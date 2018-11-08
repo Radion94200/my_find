@@ -1,0 +1,19 @@
+This is the README for the myfind project
+
+This document explain the using of this function.
+Myfind is a simplified function which works like "find" in shell.
+
+Architecture:
+
+In the ./test there is the testsuite about myfind function.
+The testsuite is write in Shell.
+
+In the ./src/ there are all files needed for the compilation of myfind.
+
+The Makefile permit to compile all files.
+There are 3 rules on it:
+	all
+	check
+	clean
+
+The TODO permit to explain the differents steps for each Thresold.
