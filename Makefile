@@ -1,7 +1,7 @@
 cc = gcc
 CFLAGS = -g -Wall -Wextra -Wall -pedantic -std=c99
 
-SRCS = src/myfind.c src/main.c src/parser.c
+SRCS = src/myfind.c src/main.c src/parser.c src/usefunc.c
 OBJS = ${SRCS:.c=.o}
 
 myfind : ${OBJS}

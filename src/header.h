@@ -9,6 +9,10 @@
 	
 }*/
 
-void list_current_dir();
+int mystrlen(char *array);
 
-int main(int argc, char *argv);
+void list_current_dir(char *path);
+
+char concat_path(char *dirparent, char *dirchild);
+
+int main(int argc, char *argv[]);
