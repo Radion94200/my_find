@@ -3,7 +3,8 @@
 int mystrlen(char *array)
 {
     int count = 0;
-    for (; array[count]; count++);
+    while (array[count] != '\0')
+        count ++;
     return count;
 }
 
