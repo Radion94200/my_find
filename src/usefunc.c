@@ -14,11 +14,15 @@ int mystrcmp(char *firstchain, char *secondchain)
     int nbcharsec = mystrlen(secondchain);
     if (nbcharfirst == nbcharsec)
     {
-        for (int i = 0; i != '\0'; i++)
+        int i = 0;
+        for (; i != '\0'; i++)
         {
             if (firstchain[i] != secondchain[i])
                 return 1;
         }
+        if (i == nbcharsec)
+            return 0;
     }
-    return 0;
+    else 
+        return 1;
 }
