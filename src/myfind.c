@@ -6,18 +6,23 @@ void list_current_dir(char *path)
 	struct dirent *entry = readdir(dir);
 	for (; entry; entry = readdir(dir))
 	{
-		unsigned char isdir = entry->d_type;
-		/*if (isdir == 4) 
-		{
-			printf("%s\n", entry->d_name);
-			list_current_dir(path);
-		}
-		else*/ 
-			printf("%s\n", entry->d_name);
+		/*if (entry->d_name == '..')
+            continue;
+        else
+        {*/
+            unsigned char isdir = entry->d_type;
+            /*if (isdir == 4) 
+            {
+                printf("%s\n", entry->d_name);
+                list_current_dir(path);
+            }
+            else*/ 
+                printf("%s\n", entry->d_name);
+        //}
 	}
 }
 
-char concat_path(char *dirparent, char *dirchild)
+char *concat_path(char *dirparent, char *dirchild)
 {
     char *path = malloc(sizeof(char) * (mystrlen(dirparent) +
                 mystrlen(dirchild)) + 2);

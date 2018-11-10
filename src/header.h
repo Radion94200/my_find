@@ -13,6 +13,6 @@ int mystrlen(char *array);
 
 void list_current_dir(char *path);
 
-char concat_path(char *dirparent, char *dirchild);
+char *concat_path(char *dirparent, char *dirchild);
 
 int main(int argc, char *argv[]);
