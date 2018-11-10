@@ -1,26 +1,6 @@
 #include "header.h"
 
-void list_current_dir(char *path)
-{
-    DIR *dir = opendir(path);
-	struct dirent *entry = readdir(dir);
-	for (; entry; entry = readdir(dir))
-	{
-		/*if (entry->d_name == '..')
-            continue;
-        else
-        {*/
-            unsigned char isdir = entry->d_type;
-            /*if (isdir == 4) 
-            {
-                printf("%s\n", entry->d_name);
-                list_current_dir(path);
-            }
-            else*/ 
-                printf("%s\n", entry->d_name);
-        //}
-	}
-}
+/* Function which concat the path of the current and child dir */
 
 char *concat_path(char *dirparent, char *dirchild)
 {
@@ -39,4 +19,36 @@ char *concat_path(char *dirparent, char *dirchild)
         count++;
     }
     return path;
+}
+
+/* Function to unaffiche . & .. */
+
+void caseunaffiche(struct dirent *entry, char *path)
+{
+    int valueone = mystrlen("..");
+    int valuetwo = mystrlen(entry->d_name);
+    int valuecurrent = mystrlen(".");
+    if (valueone != valuetwo && valuecurrent != valuetwo)
+    {
+        /*unsigned char isdir = entry->d_type;
+        if (isdir == 4) 
+        {
+            printf("%s\n", entry->d_name);
+            list_current_dir(path);
+        }
+        else*/ 
+            printf("%s""/""%s\n", path, entry->d_name);
+    }
+}
+
+/* Function that list files and directory in the given path */
+
+void list_current_dir(char *path)
+{
+    DIR *dir = opendir(path);
+	struct dirent *entry = readdir(dir);
+	for (; entry; entry = readdir(dir))
+	{
+        caseunaffiche(entry, path);
+	}
 }
