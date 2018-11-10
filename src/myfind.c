@@ -47,8 +47,10 @@ void list_current_dir(char *path)
 {
     DIR *dir = opendir(path);
 	struct dirent *entry = readdir(dir);
-	for (; entry; entry = readdir(dir))
+	printf("%s\n", path);
+    for (; entry; entry = readdir(dir))
 	{
         caseunaffiche(entry, path);
 	}
+    closedir(dir);
 }
