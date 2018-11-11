@@ -25,4 +25,5 @@ int mystrcmp(char *firstchain, char *secondchain)
     }
     else 
         return 1;
+    return 0;
 }

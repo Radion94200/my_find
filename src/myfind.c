@@ -48,7 +48,9 @@ void list_current_dir(char *path)
     if (path == NULL)
         path = ".";
     DIR *dir = opendir(path);
-	if (dir != NULL)
+    if (dir == NULL)
+            fprintf(stderr, "myfind: cannot do \'%s\': Permission Denied\n", path);
+    if (dir != NULL)
     {
         struct dirent *entry = readdir(dir);
         printf("%s\n", path);
