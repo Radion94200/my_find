@@ -12,8 +12,11 @@ char *concat_path(char *dirparent, char *dirchild)
         path[count] = dirparent[i];
         count++;
     }
-    path[count] = '/';
-    count++;
+    if (dirparent[count - 1] != '/')
+    {
+        path[count] = '/';
+        count++;
+    }
     for (int j = 0; j < mystrlen(dirchild); j++)
     {
         path[count] = dirchild[j];
@@ -27,16 +30,18 @@ char *concat_path(char *dirparent, char *dirchild)
 
 void caseunaffiche(struct dirent *entry, char *path)
 {
-    if (mystrcmp("..", entry->d_name) != 0 && mystrcmp(".", entry->d_name) != 0)
+    if (mystrcmp("..", entry->d_name) != 0 && mystrcmp(".",
+        entry->d_name) != 0)
     {
         unsigned char isdir = entry->d_type;
         if (isdir == 4) 
         {
-            char *newpath = malloc(sizeof(char) * (mystrlen(path) + mystrlen(entry->d_name) + 2));
+            char *newpath = malloc(sizeof(char) * (mystrlen(path) +
+                mystrlen(entry->d_name) + 2));
             newpath = concat_path(path, entry->d_name);
             list_current_dir(newpath);
         }
-        else 
+        else
             printf("%s""/""%s\n", path, entry->d_name);
     }
 }
@@ -49,7 +54,10 @@ void list_current_dir(char *path)
         path = ".";
     DIR *dir = opendir(path);
     if (dir == NULL)
-            fprintf(stderr, "myfind: cannot do \'%s\': Permission Denied\n", path);
+    {
+        fprintf(stderr, "myfind: cannot do \'%s\': %s\n", path, 
+            strerror(errno));
+    }
     if (dir != NULL)
     {
         struct dirent *entry = readdir(dir);
