@@ -12,10 +12,11 @@ myfind : ${OBJS}
 all : myfind
 
 check : tests/test.sh myfind
-	tests/test.sh
+	tests/test.sh | column -t
 
 clean :
 	${RM} src/*.o
 	${RM} myfind
 	${RM} src/.*.swp #pour supprimer les fichiers de l editeur
 	${RM} .*.swp
+	${RM} tests/.*.swp

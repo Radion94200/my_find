@@ -7,30 +7,23 @@ YELLOW=`tput setaf 3`
 # TEST ONE: 
  
 num=1
-state="./"
-t=$(./myfind ./)
-error=$?
-expected=$(find ./)
-if [ "$t" != "$expected" ] ; then
-	echo "${RED}Error test $num"
-    echo "${RED}bad value on <$state>"
-    echo "${YELLOW}got <$t> ${RED}expected <$expected>"
+./myfind tests > myfind.txt
+find tests > find.txt
+DIFF=$(diff myfind.txt find.txt)
+if [ "$DIFF" != "" ] ; then
+	echo "${RED}Test $num: Check Directory tests NOK"
 else
-	echo "${GREEN}Test $num OK"
+	echo "${GREEN}Test $num: Check directory tests OK"
 fi
 
 # TEST TWO: 
  
 num=2
-state="../"
-t=$(./myfind ../)
-error=$?
-expected=$(find ../)
-if [ "$t" != "$expected" ] ; then
-	echo "${RED}Error test $num"
-    echo "${RED}bad value on <$state>"
-    echo "${YELLOW}got <$t> ${RED}expected <$expected>"
-	exit
+./myfind . > myfind.txt
+find . > find.txt
+DIFF=$(diff myfind.txt find.txt)
+if [ "$DIFF" != "" ] ; then
+	echo "${RED}Test $num: Check directory . NOK"
 else
-	echo "${GREEN}Test $num OK"
+	echo "${GREEN}Test $num: Check directory . OK"
 fi
