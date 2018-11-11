@@ -27,9 +27,6 @@ char *concat_path(char *dirparent, char *dirchild)
 
 void caseunaffiche(struct dirent *entry, char *path)
 {
-    //int valueone = mystrlen("..");
-    //int valuetwo = mystrlen(entry->d_name);
-    //int valuecurrent = mystrlen(".");
     if (mystrcmp("..", entry->d_name) != 0 && mystrcmp(".", entry->d_name) != 0)
     {
         unsigned char isdir = entry->d_type;
@@ -48,6 +45,8 @@ void caseunaffiche(struct dirent *entry, char *path)
 
 void list_current_dir(char *path)
 {
+    if (path == NULL)
+        path = ".";
     DIR *dir = opendir(path);
 	if (dir != NULL)
     {
@@ -57,6 +56,6 @@ void list_current_dir(char *path)
         {
             caseunaffiche(entry, path);
         }
+        closedir(dir);
     }
-    closedir(dir);
 }

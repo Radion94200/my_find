@@ -22,3 +22,5 @@ void caseunaffiche(struct dirent *entry, char *path);
 
 /* Functions of main.c */
 int main(int argc, char *argv[]);
+
+/* Function of specialcases.c */

@@ -1,7 +1,7 @@
 cc = gcc
 CFLAGS = -g -Wall -Wextra -Wall -pedantic -std=c99
 
-SRCS = src/myfind.c src/main.c src/parser.c src/usefunc.c
+SRCS = src/myfind.c src/main.c src/parser.c src/usefunc.c src/specialcases.c
 OBJS = ${SRCS:.c=.o}
 
 myfind : ${OBJS}
@@ -17,6 +17,7 @@ check : tests/test.sh myfind
 clean :
 	${RM} src/*.o
 	${RM} myfind
+	${RM} *.txt
 	${RM} src/.*.swp #pour supprimer les fichiers de l editeur
 	${RM} .*.swp
 	${RM} tests/.*.swp

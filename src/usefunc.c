@@ -15,7 +15,7 @@ int mystrcmp(char *firstchain, char *secondchain)
     if (nbcharfirst == nbcharsec)
     {
         int i = 0;
-        for (; i != '\0'; i++)
+        for (; i < nbcharfirst; i++)
         {
             if (firstchain[i] != secondchain[i])
                 return 1;
