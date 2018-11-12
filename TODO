@@ -5,3 +5,15 @@ Fist step is doing :
 	The Makefile to compile and test programs and/or functions OK
 	Testsuite for the first Threshold OK
 	Commit these steps OK
+
+Second step
+    Upadte of the testsuite OK
+    Recursive to print result OK
+    create my own useful func OK
+    Check Memory Leaks OK
+
+Third step
+    Error cases OK
+    Special cases Maybe OK
+    Symbolic links NOK
+    Files without right on them NOK
