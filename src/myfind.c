@@ -2,28 +2,26 @@
 
 /* Function which concat the path of the current and child dir */
 
-char *concat_path(char *dirparent, char *dirchild)
+char *concat_path(char *dirparent, char *dirchild, char *newpath)
 {
-    char *path = malloc(sizeof(char) * (mystrlen(dirparent) +
-                mystrlen(dirchild)) + 2);
     int count = 0;
     for (int i = 0; i < mystrlen(dirparent); i++)
     {
-        path[count] = dirparent[i];
+        newpath[count] = dirparent[i];
         count++;
     }
     if (dirparent[count - 1] != '/')
     {
-        path[count] = '/';
+        newpath[count] = '/';
         count++;
     }
     for (int j = 0; j < mystrlen(dirchild); j++)
     {
-        path[count] = dirchild[j];
+        newpath[count] = dirchild[j];
         count++;
     }
-    path[count] = '\0';
-    return path;
+    newpath[count] = '\0';
+    return newpath;
 }
 
 /* Function to unaffiche . & .. */
@@ -38,8 +36,9 @@ void caseunaffiche(struct dirent *entry, char *path)
         {
             char *newpath = malloc(sizeof(char) * (mystrlen(path) +
                 mystrlen(entry->d_name) + 2));
-            newpath = concat_path(path, entry->d_name);
+            newpath = concat_path(path, entry->d_name, newpath);
             list_current_dir(newpath);
+            free(newpath);
         }
         else
             printf("%s""/""%s\n", path, entry->d_name);

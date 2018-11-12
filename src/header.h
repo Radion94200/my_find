@@ -17,7 +17,7 @@ int mystrcmp(char *firstchain, char *secondchain);
 
 /* Functions of myfind.c */
 void list_current_dir(char *path);
-char *concat_path(char *dirparent, char *dirchild);
+char *concat_path(char *dirparent, char *dirchild, char *newpath);
 void caseunaffiche(struct dirent *entry, char *path);
 
 /*Functions of parser.c */
