@@ -2,12 +2,6 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc == 1)
-        list_current_dir(argv[1]);
-    else
-    {
-        for (int i = 1; i < argc; i++)
-            list_current_dir(argv[i]);
-    }
+    parse_options(argc, argv);
     return 0;
 }

@@ -59,6 +59,8 @@ void list_current_dir(char *path)
     DIR *dir = opendir(path);
     if (dir == NULL)
     {
+        if (errno == EACCES)
+            printf("%s,\n", path);
         fprintf(stderr, "myfind: cannot do \'%s\': %s\n", path, 
             strerror(errno));
     }

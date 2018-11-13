@@ -7,9 +7,12 @@
 #include <string.h>
 #include <errno.h>
 
-/*struct parse{
-	
-}*/
+struct parse{
+    int d;
+    int L;
+    int P;
+    int H;
+};
 
 /* Functions of usefunc.c */
 int mystrlen(char *array);
@@ -21,6 +24,7 @@ char *concat_path(char *dirparent, char *dirchild, char *newpath);
 void caseunaffiche(struct dirent *entry, char *path);
 
 /*Functions of parser.c */
+void parse_options(int argc, char *argv[], struct parse parse);
 
 /* Functions of main.c */
 int main(int argc, char *argv[]);
