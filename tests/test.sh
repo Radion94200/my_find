@@ -52,3 +52,29 @@ if [ "$DIFF" != "" ] ; then
 else
 	echo "${GREEN}Test $num: Check directory \"\" OK"
 fi
+
+
+# TEST 5: 
+ 
+num=5
+./myfind ../ > myfind.txt
+find ../ > find.txt
+DIFF=$(diff myfind.txt find.txt)
+if [ "$DIFF" != "" ] ; then
+	echo "${RED}Test $num: Check directory ../ NOK"
+else
+	echo "${GREEN}Test $num: Check directory ../ OK"
+fi
+
+
+# TEST 6: 
+ 
+num=6
+./myfind tests . > myfind.txt
+find tests . > find.txt
+DIFF=$(diff myfind.txt find.txt)
+if [ "$DIFF" != "" ] ; then
+	echo "${RED}Test $num: Check directories tests_and_\".\" NOK"
+else
+	echo "${GREEN}Test $num: Check directories tests_and_\".\" OK"
+fi

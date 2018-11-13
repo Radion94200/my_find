@@ -10,7 +10,7 @@ char *concat_path(char *dirparent, char *dirchild, char *newpath)
         newpath[count] = dirparent[i];
         count++;
     }
-    if (dirparent[count - 1] != '/')
+    if (newpath[count - 1] != '/')
     {
         newpath[count] = '/';
         count++;
@@ -41,7 +41,12 @@ void caseunaffiche(struct dirent *entry, char *path)
             free(newpath);
         }
         else
-            printf("%s""/""%s\n", path, entry->d_name);
+        {
+            if (path[mystrlen(path) - 1] == '/')
+                printf("%s""%s\n", path, entry->d_name);
+            else
+                printf("%s""/""%s\n", path, entry->d_name);
+        }
     }
 }
 
