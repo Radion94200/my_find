@@ -26,7 +26,7 @@ char *concat_path(char *dirparent, char *dirchild, char *newpath)
 
 /* Function to unaffiche . & .. */
 
-void caseunaffiche(struct dirent *entry, char *path)
+void caseunaffiche(struct dirent *entry, char *path, struct parse parse)
 {
     if (mystrcmp("..", entry->d_name) != 0 && mystrcmp(".",
         entry->d_name) != 0)
@@ -37,7 +37,7 @@ void caseunaffiche(struct dirent *entry, char *path)
             char *newpath = malloc(sizeof(char) * (mystrlen(path) +
                 mystrlen(entry->d_name) + 2));
             newpath = concat_path(path, entry->d_name, newpath);
-            list_current_dir(newpath);
+            list_current_dir(newpath, parse);
             free(newpath);
         }
         else
@@ -52,7 +52,7 @@ void caseunaffiche(struct dirent *entry, char *path)
 
 /* Function that list files and directory in the given path */
 
-void list_current_dir(char *path)
+void list_current_dir(char *path, struct parse parse)
 {
     if (path == NULL)
         path = ".";
@@ -67,10 +67,15 @@ void list_current_dir(char *path)
     if (dir != NULL)
     {
         struct dirent *entry = readdir(dir);
-        printf("%s\n", path);
+        if (parse.d != 1)
+            printf("%s\n", path);
         for (; entry; entry = readdir(dir))
         {
-            caseunaffiche(entry, path);
+            caseunaffiche(entry, path, parse);
+        }
+        if (parse.d == 1)
+        {
+            printf("%s\n", path);
         }
         closedir(dir);
     }

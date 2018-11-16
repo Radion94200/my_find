@@ -19,14 +19,14 @@ int mystrlen(char *array);
 int mystrcmp(char *firstchain, char *secondchain);
 
 /* Functions of myfind.c */
-void list_current_dir(char *path);
+void list_current_dir(char *path, struct parse parse);
 char *concat_path(char *dirparent, char *dirchild, char *newpath);
-void caseunaffiche(struct dirent *entry, char *path);
+void caseunaffiche(struct dirent *entry, char *path, struct parse parse);
 
 /*Functions of parser.c */
 void parse_options(int argc, char *argv[], struct parse parse);
 
 /* Functions of main.c */
-int main(int argc, char *argv[]);
+int main(int argc, char *argv[], struct parse parse);
 
 /* Function of specialcases.c */

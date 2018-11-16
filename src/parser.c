@@ -3,7 +3,7 @@
 void parse_options(int argc, char *argv[], struct parse parse)
 {
     if (argc == 1)
-        list_current_dir(argv[1]);
+        list_current_dir(argv[1], parse);
     else
     {
         for (int i = 1; i < argc; i++)
@@ -32,7 +32,7 @@ void parse_options(int argc, char *argv[], struct parse parse)
                 }
             }
             else
-                list_current_dir(argv[i]);
+                list_current_dir(argv[i], parse);
         }
     }
 }
