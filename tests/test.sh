@@ -109,8 +109,8 @@ fi
 # TEST 9: 
  
 num=9
-./myfind -H . > myfind.txt
-find -H . > find.txt
+./myfind -H test2 > myfind.txt
+find -H test2 > find.txt
 DIFF=$(diff myfind.txt find.txt)
 if [ "$DIFF" != "" ] ; then
 	echo "${RED}Test $num: Check directories -H NOK"

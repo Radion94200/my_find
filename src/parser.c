@@ -28,11 +28,19 @@ void parse_options(int argc, char *argv[], struct parse parse)
                         break;
                     default:
                         fprintf(stderr, "myfind: cannot do \"%s%s\" %s\n", 
-                            argv[1][0], argv[i][1], strerror(errno));
+                            argv[1], argv[i], strerror(errno));
                 }
             }
             else
                 list_current_dir(argv[i], parse);
         }
     }
+}
+
+void initialize_struct(struct parse *parse)
+{
+    parse->d = 0;
+    parse->H = 0;
+    parse->L = 0;
+    parse->P = 0;
 }

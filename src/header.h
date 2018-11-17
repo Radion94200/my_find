@@ -21,12 +21,15 @@ int mystrcmp(char *firstchain, char *secondchain);
 /* Functions of myfind.c */
 void list_current_dir(char *path, struct parse parse);
 char *concat_path(char *dirparent, char *dirchild, char *newpath);
-void caseunaffiche(struct dirent *entry, char *path, struct parse parse);
+void caseunaffiche(struct dirent *entry, char *path, struct parse parse, 
+    int SL);
 
 /*Functions of parser.c */
 void parse_options(int argc, char *argv[], struct parse parse);
+void initialize_struct(struct parse *parse);
 
 /* Functions of main.c */
-int main(int argc, char *argv[], struct parse parse);
+int main(int argc, char *argv[]);
 
 /* Function of specialcases.c */
+int symbolink(char *path);
