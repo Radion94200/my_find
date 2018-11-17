@@ -1,5 +1,5 @@
 cc = gcc
-CFLAGS = -g -Wall -Wextra -Werror -pedantic -std=c99
+CFLAGS = -g -Wall -Wextra -pedantic -std=c99 -Werror
 
 SRCS = src/myfind.c src/main.c src/parser.c src/usefunc.c src/specialcases.c
 OBJS = ${SRCS:.c=.o}

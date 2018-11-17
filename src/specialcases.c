@@ -6,7 +6,7 @@ int symbolink(char *path)
 {
     struct stat buf;
     lstat(path, &buf);
-    if (buf.st_mode == S_IFLNK)
+    if (S_ISLNK(buf.st_mode))
         return 1;
     return 0;    
 }

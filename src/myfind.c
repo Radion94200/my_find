@@ -33,13 +33,21 @@ void caseunaffiche(struct dirent *entry, char *path, struct parse parse,
         entry->d_name) != 0)
     {
         unsigned char isdir = entry->d_type;
-        if (isdir == 4) 
+        if (parse.P == 1 && SL == 1)
+            return;
+        if (isdir == DT_DIR) 
         {
             char *newpath = malloc(sizeof(char) * (mystrlen(path) +
                 mystrlen(entry->d_name) + 2));
             newpath = concat_path(path, entry->d_name, newpath);
-            if (parse.P == 1 && SL == 1)
-                return;
+            list_current_dir(newpath, parse);
+            free(newpath);
+        }
+        else if (isdir == DT_LNK && parse.L == 1)
+        {
+            char *newpath = malloc(sizeof(char) * (mystrlen(path) +
+                mystrlen(entry->d_name) + 2));
+            newpath = concat_path(path, entry->d_name, newpath);
             list_current_dir(newpath, parse);
             free(newpath);
         }
