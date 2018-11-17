@@ -10,3 +10,18 @@ int symbolink(char *path)
         return 1;
     return 0;    
 }
+
+/* Function to compare args and path */
+
+int functocomp(char *path, int argc, char *argv[])
+{
+    for (int i = 0; i < argc; i++)
+    {
+        int retval = mystrcmp(path, argv[i]);
+        if (retval == 0)
+            return 0;
+        else
+            return 1;
+    }
+    return 0;
+}

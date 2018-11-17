@@ -27,7 +27,7 @@ char *concat_path(char *dirparent, char *dirchild, char *newpath)
 /* Function to unaffiche . & .. */
 
 void caseunaffiche(struct dirent *entry, char *path, struct parse parse, 
-    int SL)
+    int SL, int argc, char *argv[])
 {
     if (mystrcmp("..", entry->d_name) != 0 && mystrcmp(".",
         entry->d_name) != 0)
@@ -36,9 +36,12 @@ void caseunaffiche(struct dirent *entry, char *path, struct parse parse,
         if (parse.P == 1 && SL == 1)
             return;
         if (isdir == DT_DIR) 
-            mymalloc(entry, path, parse);
+            mymalloc(entry, path, parse, argc, argv);
         else if (isdir == DT_LNK && parse.L == 1)
-            mymalloc(entry, path, parse);
+            mymalloc(entry, path, parse, argc, argv);
+        else if (isdir == DT_LNK && parse.H && functocomp(path, argc, argv) 
+            == 0)
+            mymalloc(entry, path, parse, argc, argv);
         else
         {
             if (path[mystrlen(path) - 1] == '/')
@@ -51,7 +54,7 @@ void caseunaffiche(struct dirent *entry, char *path, struct parse parse,
 
 /* Function that list files and directory in the given path */
 
-void list_current_dir(char *path, struct parse parse)
+void list_current_dir(char *path, struct parse parse, int argc, char *argv[])
 {
     if (path == NULL)
         path = ".";
@@ -70,7 +73,7 @@ void list_current_dir(char *path, struct parse parse)
         if (parse.d != 1)
             printf("%s\n", path);
         for (; entry; entry = readdir(dir))
-            caseunaffiche(entry, path, parse, SL);
+            caseunaffiche(entry, path, parse, SL, argc, argv);
         if (parse.d == 1)
             printf("%s\n", path);
         closedir(dir);
@@ -80,11 +83,12 @@ void list_current_dir(char *path, struct parse parse)
 /* Function which allocate memory for the concat then do recursive if 
 necessary */
 
-void mymalloc(struct dirent *entry, char *path, struct parse parse)
+void mymalloc(struct dirent *entry, char *path, struct parse parse, int argc,
+    char *argv[])
 {
     char *newpath = malloc(sizeof(char) * (mystrlen(path) +
         mystrlen(entry->d_name) + 2));
     newpath = concat_path(path, entry->d_name, newpath);
-    list_current_dir(newpath, parse);
+    list_current_dir(newpath, parse, argc, argv);
     free(newpath);
 }
