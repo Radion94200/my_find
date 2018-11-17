@@ -24,6 +24,7 @@ void list_current_dir(char *path, struct parse parse);
 char *concat_path(char *dirparent, char *dirchild, char *newpath);
 void caseunaffiche(struct dirent *entry, char *path, struct parse parse, 
     int SL);
+void mymalloc(struct dirent *entry, char *path, struct parse parse);
 
 /*Functions of parser.c */
 void parse_options(int argc, char *argv[], struct parse parse);

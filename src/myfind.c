@@ -36,21 +36,9 @@ void caseunaffiche(struct dirent *entry, char *path, struct parse parse,
         if (parse.P == 1 && SL == 1)
             return;
         if (isdir == DT_DIR) 
-        {
-            char *newpath = malloc(sizeof(char) * (mystrlen(path) +
-                mystrlen(entry->d_name) + 2));
-            newpath = concat_path(path, entry->d_name, newpath);
-            list_current_dir(newpath, parse);
-            free(newpath);
-        }
+            mymalloc(entry, path, parse);
         else if (isdir == DT_LNK && parse.L == 1)
-        {
-            char *newpath = malloc(sizeof(char) * (mystrlen(path) +
-                mystrlen(entry->d_name) + 2));
-            newpath = concat_path(path, entry->d_name, newpath);
-            list_current_dir(newpath, parse);
-            free(newpath);
-        }
+            mymalloc(entry, path, parse);
         else
         {
             if (path[mystrlen(path) - 1] == '/')
@@ -87,4 +75,16 @@ void list_current_dir(char *path, struct parse parse)
             printf("%s\n", path);
         closedir(dir);
     }
+}
+
+/* Function which allocate memory for the concat then do recursive if 
+necessary */
+
+void mymalloc(struct dirent *entry, char *path, struct parse parse)
+{
+    char *newpath = malloc(sizeof(char) * (mystrlen(path) +
+        mystrlen(entry->d_name) + 2));
+    newpath = concat_path(path, entry->d_name, newpath);
+    list_current_dir(newpath, parse);
+    free(newpath);
 }
