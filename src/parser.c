@@ -17,6 +17,7 @@ void parse_options(int argc, char *argv[], struct parse parse)
                         break;
                     case 'H':
                         parse.H = 1;
+                        parse.P = 0;
                         break;
                     case 'L':
                         parse.L = 1;
@@ -42,5 +43,5 @@ void initialize_struct(struct parse *parse)
     parse->d = 0;
     parse->H = 0;
     parse->L = 0;
-    parse->P = 0;
+    parse->P = 1;
 }
