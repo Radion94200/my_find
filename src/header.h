@@ -8,6 +8,7 @@
 #include <string.h>
 #include <errno.h>
 
+/* Definition of the struct to check options */
 struct parse{
     int d;
     int L;

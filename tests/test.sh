@@ -195,3 +195,29 @@ if [ "$DIFF" != "" ] ; then
 else
 	echo "${GREEN}Test $num: Check directories -L_test2 OK"
 fi
+
+
+# TEST 16: 
+ 
+num=16
+./myfind -name main.c > myfind.txt
+find -name main.c > find.txt
+DIFF=$(diff myfind.txt find.txt)
+if [ "$DIFF" != "" ] ; then
+	echo "${RED}Test $num: Check directories -name_file NOK"
+else
+	echo "${GREEN}Test $num: Check directories -name_file OK"
+fi
+
+
+# TEST 17: 
+ 
+num=17
+./myfind -type d main.c > myfind.txt
+find -type d main.c > find.txt
+DIFF=$(diff myfind.txt find.txt)
+if [ "$DIFF" != "" ] ; then
+	echo "${RED}Test $num: Check directories -name_file NOK"
+else
+	echo "${GREEN}Test $num: Check directories -name_file OK"
+fi
