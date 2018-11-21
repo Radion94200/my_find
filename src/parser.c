@@ -45,3 +45,26 @@ void initialize_struct(struct parse *parse)
     parse->L = 0;
     parse->P = 1;
 }
+
+void initialize_expression(struct expression *expression)
+{
+    expression->name = "";
+    expression->type = "";
+}
+
+void parse_expr(struct expression *expression, int argc, char *argv[])
+{
+    initialize_expression(expression);
+    for (int i = 0; i < argc; i++)
+    {
+        if (argv[i][0] == '-')
+        {
+            int count = 1;
+            for (; count <= mystrlen(argv[i]); count++)
+            {
+                (mystrcmp("-name", argv[i]));
+                (mystrcmp("-type", argv[i]));
+            }
+        }
+    }
+}

@@ -8,12 +8,27 @@
 #include <string.h>
 #include <errno.h>
 
+/* Definition of the enum */
+enum expression_value
+{
+    name,
+    type
+};
+
 /* Definition of the struct to check options */
-struct parse{
+struct parse
+{
     int d;
     int L;
     int P;
     int H;
+};
+
+/* Definition of the struct to check expressions */
+struct expression
+{
+    char *name;
+    char *type;
 };
 
 /* Functions of usefunc.c */
@@ -31,6 +46,8 @@ void mymalloc(struct dirent *entry, char *path, struct parse parse, int argc,
 /*Functions of parser.c */
 void parse_options(int argc, char *argv[], struct parse parse);
 void initialize_struct(struct parse *parse);
+void initialize_expression(struct expression *expression);
+void parse_expr(struct expression *expression, int argc, char *argv[]);
 
 /* Functions of main.c */
 int main(int argc, char *argv[]);
