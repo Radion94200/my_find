@@ -32,8 +32,8 @@ fi
 # TEST 3: 
  
 num=3
-./myfind / > myfind.txt
-find / > find.txt
+./myfind tests/ > myfind.txt
+find tests/ > find.txt
 DIFF=$(diff myfind.txt find.txt)
 if [ "$DIFF" != "" ] ; then
 	echo "${RED}Test $num: Check directory / NOK"
